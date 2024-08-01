@@ -1,0 +1,41 @@
+﻿@model IEnumerable<LibraryCatalog.Models.Library>
+
+<p>
+    @TempData["Massage"]
+</p>
+
+
+<h1>רשימת הספריות</h1>
+<p>
+    <a asp-action="CreateLibraty">לחץ להוספת ספריה</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.genre.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                    @Html.DisplayFor(modelItem => item.genre.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                    @Html.ActionLink("מעבר למדפי ספריה זו", "Shelves", new { name = item.Name }) |
+                    @Html.ActionLink("הוסף מדף בספריה זו", "CreateShlf", new { name = item.Name }) |
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

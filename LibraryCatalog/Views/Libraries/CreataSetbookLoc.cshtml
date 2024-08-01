@@ -1,0 +1,45 @@
+﻿@model LibraryCatalog.Models.SetBox
+
+@{
+    ViewData["Title"] = "הוספת סט ספרם";
+}
+
+<h2>@ViewData["Title"]</h2>
+<p>
+    @TempData["Massage"]
+</p>
+
+<form asp-action="CreataSetbook" method="post">
+    <input type="hidden" name="Shelf.Id" value="@Model.Shelf.Id" />
+
+    <div class="form-group">
+        <label for="numberOfBooks">מספר הספרים</label>
+        <input type="text" class="form-control" id="numberOfBooks" name="NumberSet" value="@Model.Books.Count" readonly />
+    </div>
+
+    <div id="books-container">
+        @for (int i = 0; i < Model.Books.Count; i++)
+        {
+            <div class="book-entry">
+                <h4>Book @i</h4>
+                <div class="form-group">
+                    <label asp-for="@Model.Books[i].Name">שם הספר</label>
+                    <input asp-for="@Model.Books[i].Name" class="form-control" />
+                    <span asp-validation-for="@Model.Books[i].Name" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="@Model.Books[i].Height">גובה הספר</label>
+                    <input asp-for="@Model.Books[i].Height" class="form-control" />
+                    <span asp-validation-for="@Model.Books[i].Height" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="@Model.Books[i].Width">רוחב הספר</label>
+                    <input asp-for="@Model.Books[i].Width" class="form-control" />
+                    <span asp-validation-for="@Model.Books[i].Width" class="text-danger"></span>
+                </div>
+            </div>
+        }
+    </div>
+
+    <button type="submit" class="btn btn-primary">הוסף סט</button>
+</form>

@@ -1,0 +1,45 @@
+﻿@model LibraryCatalog.Models.ShelfAndLibrary
+
+@{
+    ViewData["Title"] = "CreateShlf";
+}
+
+<h1>CreateShlf</h1>
+
+<h4>ShelfAndLibrary</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="CreateShlf">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Shelf.Number" class="control-label">כותרת המדף</label>
+                <input asp-for="Shelf.Number" class="form-control" />
+                <span asp-validation-for="Shelf.Number" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Shelf.Height" class="control-label">גובה המדף</label>
+                <input asp-for="Shelf.Height" class="form-control" />
+                <span asp-validation-for="Shelf.Height" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Shelf.Width" class="control-label">רוחב המדף</label>
+                <input asp-for="Shelf.Width" class="form-control" />
+                <span asp-validation-for="Shelf.Width" class="text-danger"></span>
+            </div>
+            <input type="hidden" asp-for="Library.Id" />
+
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
